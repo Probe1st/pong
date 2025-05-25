@@ -1,7 +1,13 @@
 #include <stdio.h>
 
-#define FIELD_HEIGHT 80
-#define FIELD_WIDTH 25
+#define FIELD_HEIGHT 25
+#define FIELD_WIDTH 80
+
+#define RIGHT_BORDER_GATE 70
+#define LEFT_BORDER_GATE 10
+
+#define CENTER_FIELD_HEIGHT 11
+#define CENTER_FIELD_WIDTH 40
 
 #define MOVE_SKIP 0
 #define MOVE_DOWN 1
@@ -74,9 +80,9 @@ int main() {
 
         move_rackets(&first_racket_pos, first_player_move, &second_racket_pos, second_player_move);
 
-        continue;
-
         move_ball(&ball_x, &ball_y, &ball_vector, &is_goal);
+
+        continue;
 
         check_goal(ball_x, ball_y, &is_goal, is_first_player_goal);
 
@@ -105,4 +111,24 @@ void move_rackets(int *first_racket_pos, int first_player_move, int *second_rack
                   int second_player_move) {
     move_one_racket(first_racket_pos, first_player_move);
     move_one_racket(second_racket_pos, second_player_move);
+}
+
+int generate_ball_vector() {
+    
+}
+
+void reset_ball_position(int *ball_x, int *ball_y, int *ball_vector) {
+    ball_x = CENTER_FIELD_WIDTH;
+    ball_y = CENTER_FIELD_HEIGHT;
+
+
+}
+
+void move_ball(int *ball_x, int *ball_y, int *ball_vector, int *is_goal) {
+    if (is_goal) {
+        reset_ball_position(&ball_x, &ball_y, &ball_vector);
+        return;
+    }
+
+
 }
